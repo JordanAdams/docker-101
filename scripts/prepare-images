@@ -1,0 +1,9 @@
+#!/bin/bash
+
+mkdir -p dist/public
+
+for p in public/*.png; do
+  convert $p -resize 800x800 "dist/public/$(basename $p)"
+  pngquant --skip-if-larger --ext ".png.min" "dist/public/$(basename $p)"
+  mv "dist/public/$(basename $p).min" "dist/public/$(basename $p)"
+done
